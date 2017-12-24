@@ -1,0 +1,8 @@
+# algorithm-problems
+Algorithm Problems Solved
+
+| POJ | HDU | ZOJ | CodeForces | CodeChef | TopCoder |
+|-----+-----+-----+------------+----------+----------|
+|     |     |     |            |          |          |
+
+[More about Tables of org-mode](http://orgmode.org/manual/Tables.html)
