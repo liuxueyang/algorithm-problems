@@ -4,8 +4,8 @@ Algorithm Problems Solved
 
 | POJ | HDU | ZOJ | CodeForces | CodeChef | TopCoder | LeetCode                | BZOJ |
 |-----+-----+-----+------------+----------+----------+-------------------------+------|
-|     |     |     |            |          |          | [[https://leetcode.com/problems/missing-number/description/][268. Missing Number]] [[file:LeetCode/268-Missing-Number.cpp][src]] |      |
-|     |     |     |            |          |          | [[https://leetcode.com/problems/power-of-three/description/][326. Power of Three]] [[file:LeetCode/326-Power-of-Three.cpp][src]] |      |
+|     |     |     |            |          |          | [[file:LeetCode/268-Missing-Number.cpp][src]] [[https://leetcode.com/problems/missing-number/description/][268. Missing Number]] |      |
+|     |     |     |            |          |          | [[file:LeetCode/326-Power-of-Three.cpp][src]] [[https://leetcode.com/problems/power-of-three/description/][326. Power of Three]] |      |
 |     |     |     |            |          |          | 223. Rectangle Area     |      |
 
 [[http://orgmode.org/manual/Tables.html][More about Tables of org-mode]]
