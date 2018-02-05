@@ -138,6 +138,12 @@ auto max_(const T1& a, const T2& b) {
   return a > b ? static_cast<return_type>(a) : static_cast<return_type>(b);
 }
 
+template<typename T1, typename T2>
+auto min_(const T1& a, const T2& b) {
+  using return_type = decltype(a + b);
+  return b > a ? static_cast<return_type>(a) : static_cast<return_type>(b);
+}
+
 // ==================================================
 
 int main(void) {
