@@ -148,5 +148,11 @@ auto min_(const T1& a, const T2& b) {
 
 int main(void) {
 
+#ifndef ONLINE_JUDGE
+  freopen("in", "r", stdin);
+#endif
+
+
+
   return 0;
 }
