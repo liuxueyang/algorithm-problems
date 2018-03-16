@@ -104,16 +104,28 @@ static auto __________2333__________ = []() {
 }();
 
 // ==================================================
+#define max_(x, y) ((x) > (y) ? (x) : (y))
+#define min_(x, y) ((x) > (y) ? (y) : (x))
+#define DEBUG(x) cout << #x " = " << x << "\n"
+#define NEWLINE cout << "\n"
+
+// ==================================================
 
 template<typename T>
 void PRINT_CONTAINER(const T& c) {
-  for (auto x : c) cout << x << " ";
-  cout << "\n";
+  for (auto x : c) PRINTC(x);
+  NEWLINE;
 }
 
 template<typename T>
 void PRINTV(const vector<T>& c) {
   PRINT_CONTAINER<vector<T>>(c);
+}
+
+template<typename T>
+void PRINTA(const T ar[], int n) {
+  for (int i = 0; i < n; ++i) PRINTC(ar[i]);
+  NEWLINE;
 }
 
 template<typename T1, typename T2>
@@ -130,18 +142,6 @@ void PRINTC(const T& a) {
 template<typename T>
 void PRINTLN(const T& a) {
   cout << a << "\n";
-}
-
-template<typename T1, typename T2>
-auto max_(const T1& a, const T2& b) {
-  using return_type = decltype(a + b);
-  return a > b ? static_cast<return_type>(a) : static_cast<return_type>(b);
-}
-
-template<typename T1, typename T2>
-auto min_(const T1& a, const T2& b) {
-  using return_type = decltype(a + b);
-  return b > a ? static_cast<return_type>(a) : static_cast<return_type>(b);
 }
 
 // ==================================================
