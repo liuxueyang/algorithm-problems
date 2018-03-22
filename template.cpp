@@ -98,10 +98,7 @@ using PII = pair<int, int>;
 // ==================================================
 
 static auto __________2333__________ = []() {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
-  return 0;
-}();
+  ios::sync_with_stdio(false); cin.tie(nullptr); return 0; }();
 
 // ==================================================
 #define max_(x, y) ((x) > (y) ? (x) : (y))
@@ -118,14 +115,10 @@ static auto __________2333__________ = []() {
 // ==================================================
 
 template<typename T>
-void PRINT_CONTAINER(const T& c) {
-  for (auto x : c) PRINTC(x); NL;
-}
+void PRINT_CONTAINER(const T& c) { for (auto x : c) PRINTC(x); NL; }
 
 template<typename T>
-void PRINTV(const vector<T>& c) {
-  PRINT_CONTAINER<vector<T>>(c);
-}
+void PRINTV(const vector<T>& c) { PRINT_CONTAINER<vector<T>>(c); }
 
 template<typename T>
 void PRINTA(const T ar[], int n) {
@@ -133,10 +126,7 @@ void PRINTA(const T ar[], int n) {
 }
 
 template<typename T1, typename T2>
-void PRINTP(const pair<T1, T2>& p) {
-  PRINTC(p.first);
-  PRINTLN(p.second);
-}
+void PRINTP(const pair<T1, T2>& p) { PRINTC(p.first); PRINTLN(p.second); }
 
 template<typename T>
 void PRINTC(const T& a) { cout << a << " "; }
