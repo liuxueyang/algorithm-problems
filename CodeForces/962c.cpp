@@ -1,6 +1,4 @@
-/*
-  Date: 2018/01/25
-*/
+// Date: Wed Apr 18 23:09:59 CST 2018
 
 // ==================================================
 
@@ -94,6 +92,28 @@ void PRINTAV( T1 & vec, T2 x) {
 }
 
 // ==================================================
+using ll = long long;
+
+const int SZ = 100000;
+string sq[ SZ + 1 ];
+
+int cmpcnt( string square, string n )
+{
+  size_t i = 0;
+  int cnt = 0;
+  
+  for ( auto x : square ) {
+    for ( ; i < n.size(); ) {
+      if ( n[ i++ ] == x ) {
+	cnt++;
+	break;
+      }
+    }
+  }
+
+  return cnt == int( square.size() ) ? ( n.size() - cnt ) : -1;
+}
+
 
 int main(void) {
 
@@ -101,7 +121,25 @@ int main(void) {
   freopen("in", "r", stdin);
 #endif
 
+  for ( ll i = 1; i <= SZ; ++i ) sq[ i ] = to_string( i * i );
 
+  string n;
+  
+  while ( cin >> n ) {
+    int r = -1;
+    int x;
+    
+    for ( auto i = 1; i <= SZ; ++i ) {
+      x = cmpcnt( sq[ i ], n );
+
+      if ( x != -1 ) {
+  	if ( -1 == r ) r = x;
+  	else r = min_( r, x );
+      }
+    }
+
+    PRINTLN( r );
+  }
 
   return 0;
 }
