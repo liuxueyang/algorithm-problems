@@ -95,13 +95,27 @@ void PRINTAV( T1 & vec, T2 x) {
 
 // ==================================================
 
+using vi = vector< int >;
+using mii = unordered_map< int, vi >;
+
+const int SZ = 150000 + 10;
+int ar[ SZ + 1 ];
+mii cnts;
+
 int main( void ) {
 
 #ifndef ONLINE_JUDGE
   freopen("in", "r", stdin);
 #endif
 
-
+  int n;
+  
+  while ( cin >> n ) {
+    for ( int i = 0; i < n; ++i ) {
+      cin >> ar[ i ];
+      
+    }
+  }
 
   return 0;
 }
