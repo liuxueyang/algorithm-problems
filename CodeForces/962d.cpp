@@ -94,12 +94,16 @@ void PRINTAV( T1 & vec, T2 x) {
 }
 
 // ==================================================
+
 
 using vi = vector< int >;
-using mii = unordered_map< int, vi >;
+using mii = unordered_map< int, int >;
+using pii = pair< int, int >;
+using ll = long long int;
 
 const int SZ = 150000 + 10;
-int ar[ SZ + 1 ];
+vector< ll > ar( SZ + 1 );
+priority_queue< pii, vector< pii >, greater< pii > > que;
 mii cnts;
 
 int main( void ) {
@@ -109,12 +113,63 @@ int main( void ) {
 #endif
 
   int n;
-  
+
   while ( cin >> n ) {
     for ( int i = 0; i < n; ++i ) {
       cin >> ar[ i ];
-      
+      ++cnts[ ar[ i ] ];
     }
+
+    for ( auto & x : cnts ) {
+      PRINT2( x.first, x.second );
+      que.push( make_pair( x.first, x.second ) );
+    }
+
+    while ( !que.empty() ) {
+      pii x_c = que.top();
+
+      PRINT2( x_c.first, x_c.second );
+      
+      que.pop();
+
+      if ( cnts[ x_c.first ] != x_c.second ) continue;
+
+      if ( x_c.second == 1 ) {
+	cnts.erase( x_c.first );
+      }
+      else {
+	auto pos1 = lower_bound( ar.begin(), ar.end(), x_c.first );
+	
+	if ( pos1 != ar.end() ) {
+	  *pos1 = LLONG_MAX;
+	  
+	  auto pos2 = lower_bound( pos1, ar.end(), x_c.first );
+	    
+	  if ( pos2 != ar.end() ) {
+	    *pos2 = *pos2 * 2;
+
+	    PRINT1( *pos2 );
+
+	    cnts[ x_c.first ] -= 2;
+	    ++cnts[ *pos2 ];
+
+	    if ( cnts[ x_c.first ] >= 2 )
+	      que.push( make_pair( x_c.first, cnts[ x_c.first ] ) );
+
+	    if ( cnts[ *pos2 ] >= 2 )
+	      que.push( make_pair( *pos2, cnts[ *pos2 ] ) );
+	  }
+	}
+      }
+    }
+
+    for ( int i = 0; i < n; ++i ) {
+      if ( ar[ i ] != LLONG_MAX ) {
+	PRINTC( ar[ i ] );
+      }
+    }
+    
+    NL;
   }
 
   return 0;
