@@ -10,6 +10,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <ctime>
 
 // Containers
 #include <vector>
@@ -42,6 +43,8 @@
 #include <iterator>
 #include <limits>
 #include <stdexcept>
+#include <random>
+#include <chrono>
 
 // ==================================================
 
@@ -127,6 +130,7 @@ using Bstp = BinarySearchTree< T > *;
 // template< class T >
 // T leftkey( ) {}
 
+// return root of bst
 template< class T >
 Bstp< T > insert_node( Bstp< T > root, T k )
 {
@@ -142,10 +146,10 @@ Bstp< T > insert_node( Bstp< T > root, T k )
 
     if ( root->key > k ) root = root->left;
     else if ( root->key < k ) root = root->right;
-    else return old_root;
+    else return old_root;	// found equal value
   }
 
-  if ( parent->key > k ) parent->left = leaf; // bug!
+  if ( parent->key > k ) parent->left = leaf;
   else parent->right = leaf;
 
   leaf->parent = parent;
@@ -163,6 +167,7 @@ void in_order_walk( Bstp< T > root )
   }
 }
 
+// return pointer to founded node or nullptr
 template< class T >
 Bstp< T > lookup_node( Bstp< T > root, T k )
 {
@@ -174,17 +179,18 @@ Bstp< T > lookup_node( Bstp< T > root, T k )
   return root;
 }
 
+// return pointer to min node
 template< class T >
 Bstp< T > min_node( Bstp< T > root )
 {
-  if ( ! root )
-    return root;
+  if ( ! root ) return root;
 
   while ( root->left ) root = root->left;
 
   return root;
 }
 
+// return pointer to max node
 template< class T >
 Bstp< T > max_node( Bstp< T > root )
 {
@@ -195,6 +201,7 @@ Bstp< T > max_node( Bstp< T > root )
   return root;
 }
 
+// return pointer to succ node or nullptr
 template< class T >
 Bstp< T > succ_node( Bstp< T > x )
 {
@@ -210,6 +217,7 @@ Bstp< T > succ_node( Bstp< T > x )
   return parent;
 }
 
+// return pointer to pred node or nullptr
 template< class T >
 Bstp< T > pred_node( Bstp< T > x )
 {
@@ -225,22 +233,24 @@ Bstp< T > pred_node( Bstp< T > x )
   return parent;
 }
 
+// return pointer to root of bst or nullptr
 template< class T >
 Bstp< T > delete_node( Bstp< T > root, Bstp< T > x )
 {
   if ( ! x ) return root;
 
-  Bstp< T > parent = x->parent;
+  Bstp< T > parent = x->parent;	// could be nullptr
   Bstp< T > x1 = x;
 
   if ( ! x->left ) x = x->right;
   else if ( ! x->right ) x = x->left;
   else {
-    Bstp< T > y = min_node( x->right ); // y doesn't have left child
+    PRINTC( "this case" );
+    Bstp< T > y = min_node( x->right ); // y does not have left child
 
     x->key = y->key;
 
-    if ( x == y->parent ) x->right = y->right;
+    if ( y == x->right ) x->right = y->right;
     else y->parent->left = y->right;
 
     if ( y->right ) y->right->parent = y->parent;
@@ -255,8 +265,10 @@ Bstp< T > delete_node( Bstp< T > root, Bstp< T > x )
     if ( parent->left == x1 ) parent->left = x;
     else parent->right = x;
   }
+  else root = x;
 
   if ( x ) x->parent = parent;
+  
   delete x1;
 
   return root;
@@ -266,15 +278,50 @@ using bsti = Bst< int >;
 using bstip = Bst< int > *;
 
 int main( void ) {
-  bsti tree { 3 };
+  const int N = 5;
+  bsti tree { N };
+  vector< int > v( N + 1 );
 
-  insert_node( & tree, 4 );
-  insert_node( & tree, 2 );
-  insert_node( & tree, 5 );
+  for ( int i = 1; i <= N; ++i ) v[ i ] = i;
+  
+  unsigned seed = chrono::system_clock::now().time_since_epoch().count();
+  
+  shuffle( v.begin(), v.end(), default_random_engine( seed ) );
 
-  in_order_walk( & tree );
+  for ( auto x : v ) insert_node( & tree, x );
 
-  NL;
+  in_order_walk( & tree ); NL;
+  bstip ptr, ptr2;
+  bstip ptree = & tree;
+
+  for ( int i = 1; i < 5; ++i ) {
+    PRINTLN( "start of for: " );
+    in_order_walk( ptree ); NL;
+    
+    PRINT2( i, v[ i ] );
+    ptr = lookup_node( ptree, v[ i ] );
+
+    ptr2 = succ_node( ptr );
+    PRINTC( "succ node: " );
+    if ( ptr2 ) PRINT1( ptr2->key );
+    else PRINT1( NULL );
+
+    ptr2 = pred_node( ptr );
+    PRINTC( "pred note: " );
+    if ( ptr2 ) PRINT1( ptr2->key );
+    else PRINT1( NULL );
+    
+    PRINTC( "deleting" );
+    PRINT2( i, v[ i ] );
+    
+    ptree = delete_node( ptree, ptr );
+
+    PRINTLN( "deleted finished" );
+
+    PRINT4( ptree, ptree->left, ptree->right, ptree->key );
+    
+    in_order_walk( ptree ); NL; NL;
+  }
 
   return 0;
 }
