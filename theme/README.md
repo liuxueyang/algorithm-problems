@@ -1,6 +1,6 @@
 ## Binary Search Tree
 
-[[file:BinarySearchTree.cpp][Binary Searh Tree { C++ implementation }]]
+[Binary Search Tree [ C++ implementation ]](file:BinarySearchTree.cpp "Binary Search Tree [ C++ implementation ]")
 
 实现的时候，果然遇到了一些问题。尤其是一个内存管理的问题，我在写析构函数的时候，
 想也没想，就这样写了：
