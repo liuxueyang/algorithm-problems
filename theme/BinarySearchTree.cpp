@@ -110,6 +110,9 @@ public:
 
   ~BinarySearchTree()
   {
+    // take care when delete a pointer whose
+    // child is not NULL! Assign them to nullptr
+    // if necessary!
     delete left;
     delete right;
   };
@@ -245,7 +248,6 @@ Bstp< T > delete_node( Bstp< T > root, Bstp< T > x )
   if ( ! x->left ) x = x->right;
   else if ( ! x->right ) x = x->left;
   else {
-    PRINTC( "this case" );
     Bstp< T > y = min_node( x->right ); // y does not have left child
 
     x->key = y->key;
@@ -255,6 +257,7 @@ Bstp< T > delete_node( Bstp< T > root, Bstp< T > x )
 
     if ( y->right ) y->right->parent = y->parent;
 
+    y->left = y->right = nullptr;
     delete y;
 
     return root;
@@ -268,7 +271,8 @@ Bstp< T > delete_node( Bstp< T > root, Bstp< T > x )
   else root = x;
 
   if ( x ) x->parent = parent;
-  
+
+  x1->left = x1->right = nullptr;
   delete x1;
 
   return root;
@@ -278,28 +282,34 @@ using bsti = Bst< int >;
 using bstip = Bst< int > *;
 
 int main( void ) {
-  const int N = 5;
-  bsti tree { N };
+  const int N = 20;
+  bstip tree = new bsti { N };	// must use new here!
   vector< int > v( N + 1 );
 
   for ( int i = 1; i <= N; ++i ) v[ i ] = i;
-  
+
   unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-  
+
   shuffle( v.begin(), v.end(), default_random_engine( seed ) );
 
-  for ( auto x : v ) insert_node( & tree, x );
+  for ( auto x : v ) {
+    PRINTC( "inserting " );
+    PRINT1( x );
+    insert_node( tree, x );
+  }
 
-  in_order_walk( & tree ); NL;
+  in_order_walk( tree ); NL;
   bstip ptr, ptr2;
-  bstip ptree = & tree;
 
-  for ( int i = 1; i < 5; ++i ) {
+  for ( int i = 1; i <= N / 2; ++i ) {
     PRINTLN( "start of for: " );
-    in_order_walk( ptree ); NL;
-    
+    in_order_walk( tree ); NL;
+
     PRINT2( i, v[ i ] );
-    ptr = lookup_node( ptree, v[ i ] );
+    ptr = lookup_node( tree, v[ i ] );
+
+    PRINTC( "current node: " );
+    PRINT1( ptr->key );
 
     ptr2 = succ_node( ptr );
     PRINTC( "succ node: " );
@@ -310,17 +320,14 @@ int main( void ) {
     PRINTC( "pred note: " );
     if ( ptr2 ) PRINT1( ptr2->key );
     else PRINT1( NULL );
-    
+
     PRINTC( "deleting" );
     PRINT2( i, v[ i ] );
-    
-    ptree = delete_node( ptree, ptr );
 
+    tree = delete_node( tree, ptr );
     PRINTLN( "deleted finished" );
 
-    PRINT4( ptree, ptree->left, ptree->right, ptree->key );
-    
-    in_order_walk( ptree ); NL; NL;
+    in_order_walk( tree ); NL; NL;
   }
 
   return 0;
