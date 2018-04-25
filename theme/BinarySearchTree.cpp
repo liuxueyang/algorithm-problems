@@ -232,15 +232,34 @@ Bstp< T > delete_node( Bstp< T > root, Bstp< T > x )
 
   Bstp< T > parent = x->parent;
   Bstp< T > x1 = x;
-  
+
   if ( ! x->left ) x = x->right;
-  else if ( ! x->right ) x = x->right;
+  else if ( ! x->right ) x = x->left;
   else {
-    Bstp< T > y = min_node( x->right );
+    Bstp< T > y = min_node( x->right ); // y doesn't have left child
 
     x->key = y->key;
-    // [WIP]
+
+    if ( x == y->parent ) x->right = y->right;
+    else y->parent->left = y->right;
+
+    if ( y->right ) y->right->parent = y->parent;
+
+    delete y;
+
+    return root;
   }
+
+  if ( parent ) {
+    // set parent
+    if ( parent->left == x1 ) parent->left = x;
+    else parent->right = x;
+  }
+
+  if ( x ) x->parent = parent;
+  delete x1;
+
+  return root;
 }
 
 using bsti = Bst< int >;
