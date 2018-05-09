@@ -10,6 +10,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <ctime>
 
 // Containers
 #include <vector>
@@ -41,6 +42,9 @@
 #include <type_traits>
 #include <iterator>
 #include <limits>
+#include <stdexcept>
+#include <random>
+#include <chrono>
 
 // ==================================================
 
