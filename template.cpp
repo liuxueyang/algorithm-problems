@@ -1,7 +1,3 @@
-/*
-  Date: 2018/01/25
-*/
-
 // ==================================================
 
 // C library
@@ -72,6 +68,9 @@ static auto __________2333__________ = []() {
 // ==================================================
 
 template<typename T>
+void PRINTC(const T& a) { cout << a << " "; }
+
+template<typename T>
 void PRINT_CONTAINER(const T& c) { for (auto x : c) PRINTC(x); NL; }
 
 template<typename T>
@@ -84,9 +83,6 @@ void PRINTA(const T ar[], int n) {
 
 template<typename T1, typename T2>
 void PRINTP(const pair<T1, T2>& p) { PRINTC(p.first); PRINTLN(p.second); }
-
-template<typename T>
-void PRINTC(const T& a) { cout << a << " "; }
 
 template<typename T>
 void PRINTLN(const T& a) { cout << a << "\n"; }
