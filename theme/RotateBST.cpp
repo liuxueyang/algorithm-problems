@@ -32,7 +32,7 @@ using Bstp = BinarySearchTree< T > *;
 
 // set y to left child of x
 template< class T >
-void set_left( Bstp x, Bstp y )
+void set_left( Bstp< T > x, Bstp< T > y )
 {
   x->left = y;
   if ( y ) y->parent = x;
@@ -40,7 +40,7 @@ void set_left( Bstp x, Bstp y )
 
 // set y to right child of x
 template< class T >
-void set_right( Bstp x, Bstp y )
+void set_right( Bstp< T > x, Bstp< T > y )
 {
   x->right = y;
   if ( y ) y->parent = x;
@@ -48,16 +48,17 @@ void set_right( Bstp x, Bstp y )
 
 // set l and r to children of x
 template< class T >
-void set_children( Bstp x, Bstp l, Bstp r)
+void set_children( Bstp< T > x, Bstp< T > l, Bstp< T > r)
 {
   set_left( x, l );
   set_right( x, r );
 }
 
+// replace x with y
 template< class T >
-void replace( Bstp x, Bstp y )
+void replace( Bstp< T > x, Bstp< T > y )
 {
-  Bstp parent = x->parent;
+  Bstp< T > parent = x->parent;
 
   if ( ! parent ) {
     if ( y ) y->parent = nullptr;
@@ -74,15 +75,15 @@ void replace( Bstp x, Bstp y )
 
 
 template< class T >
-Bstp left_rotate_bst( Bstp t, Bstp x )
+Bstp< T > left_rotate_bst( Bstp< T > t, Bstp< T > x )
 {
-  Bstp p = x->parent;
-  Bstp y = x->right;
-  Bstp a = x->left;
+  Bstp< T > p = x->parent;
+  Bstp< T > y = x->right;
+  Bstp< T > a = x->left;
 
   if ( y ) {
-    Bstp b = y->left;
-    Bstp c = y->right;
+    Bstp< T > b = y->left;
+    Bstp< T > c = y->right;
 
     replace( x, y );
     set_children( x, a, b );
@@ -95,16 +96,16 @@ Bstp left_rotate_bst( Bstp t, Bstp x )
 }
 
 template< class T >
-Bstp right_rotate_bst( Bstp t, Bstp y )
+Bstp< T > right_rotate_bst( Bstp< T > t, Bstp< T > y )
 {
-  Bstp p = y->parent;
-  Bstp x = y->left;
-  Bstp c = y->right;
+  Bstp< T > p = y->parent;
+  Bstp< T > x = y->left;
+  Bstp< T > c = y->right;
 
   if ( x ) {
-    Bstp a = x->left;
-    Bstp b = x->right;
-    
+    Bstp< T > a = x->left;
+    Bstp< T > b = x->right;
+
     replace( y, x );
     set_children( x, a, y );
     set_children( y, b, c );
@@ -116,11 +117,6 @@ Bstp right_rotate_bst( Bstp t, Bstp y )
 
 int main( void )
 {
-
-#ifndef ONLINE_JUDGE
-  freopen("in", "r", stdin);
-#endif
-
 
 
   return 0;
