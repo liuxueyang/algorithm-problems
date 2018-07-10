@@ -119,9 +119,8 @@ int main( void ) {
     }
 
     vector<ll> twos;
-    for (ll i = 1; ; ++i) {
+    for (ll i = 1; i < 31; ++i) {
       ll t = 1 << i;
-      if (t > MAXN) break;
       twos.push_back(t);
     }
 
