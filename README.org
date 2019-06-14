@@ -1,25 +1,21 @@
-** algorithm-problems
+平時用來練手做的題目。
 
-Algorithm Problems Solved
+* LeetCode
+  [[https://leetcode.com/problems/two-sum/description/][1. Two Sum]]
+  [[https://leetcode.com/problems/add-two-numbers/description/][2. Add Two Numbers]]
+  [[https://leetcode.com/problems/longest-substring-without-repeating-characters/description/][3. Longest Substring Without Repeating Characters]]
+  [[https://leetcode.com/problems/median-of-two-sorted-arrays/description/][4. Median of Two Sorted Arrays]]
+  [[https://leetcode.com/problems/longest-palindromic-substring/description/][5. Longest Palindromic Substring]]
+  6. ZigZag Conversion
+  7. Reverse Integer
+  8. String to Integer (atoi)
+  [[https://leetcode.com/problems/palindrome-number/description/][9. Palindrome Number]]
+  [[file:LeetCode/55-Jump-Game.cpp][src]] [[https://leetcode.com/problems/jump-game/description/][55. Jump Game]]
+  [[file:LeetCode/67-Add-Binary.cpp][src]] [[https://leetcode.com/problems/add-binary/description/][67. Add Binary]]
+  [[file:LeetCode/204-Count-Primes.cpp][src]] [[https://leetcode.com/problems/count-primes/description/][204. Count Primes]]
+  223. Rectangle Area
+  [[file:LeetCode/268-Missing-Number.cpp][src]] [[https://leetcode.com/problems/missing-number/description/][268. Missing Number]]
+  [[file:LeetCode/326-Power-of-Three.cpp][src]] [[https://leetcode.com/problems/power-of-three/description/][326. Power of Three]]
+  [[file:LeetCode/735-Asteroid-Collision.cpp][src]] [[https://leetcode.com/problems/asteroid-collision/description/][735. Asteroid Collision]]
 
-| POJ | HDU | ZOJ | CodeForces | CodeChef | TopCoder | LeetCode                                          | BZOJ |
-|-----+-----+-----+------------+----------+----------+---------------------------------------------------+------|
-|     |     |     |            |          |          | [[https://leetcode.com/problems/two-sum/description/][1. Two Sum]]                                        |      |
-|     |     |     |            |          |          | [[https://leetcode.com/problems/add-two-numbers/description/][2. Add Two Numbers]]                                |      |
-|     |     |     |            |          |          | [[https://leetcode.com/problems/longest-substring-without-repeating-characters/description/][3. Longest Substring Without Repeating Characters]] |      |
-|     |     |     |            |          |          | [[https://leetcode.com/problems/median-of-two-sorted-arrays/description/][4. Median of Two Sorted Arrays]]                    |      |
-|     |     |     |            |          |          | [[https://leetcode.com/problems/longest-palindromic-substring/description/][5. Longest Palindromic Substring]]                  |      |
-|     |     |     |            |          |          | 6. ZigZag Conversion                              |      |
-|     |     |     |            |          |          | 7. Reverse Integer                                |      |
-|     |     |     |            |          |          | 8. String to Integer (atoi)                       |      |
-|     |     |     |            |          |          | [[https://leetcode.com/problems/palindrome-number/description/][9. Palindrome Number]]                              |      |
-|     |     |     |            |          |          |                                                   |      |
-|     |     |     |            |          |          | [[file:LeetCode/55-Jump-Game.cpp][src]] [[https://leetcode.com/problems/jump-game/description/][55. Jump Game]]                                 |      |
-|     |     |     |            |          |          | [[file:LeetCode/67-Add-Binary.cpp][src]] [[https://leetcode.com/problems/add-binary/description/][67. Add Binary]]                                |      |
-|     |     |     |            |          |          | [[file:LeetCode/204-Count-Primes.cpp][src]] [[https://leetcode.com/problems/count-primes/description/][204. Count Primes]]                             |      |
-|     |     |     |            |          |          | 223. Rectangle Area                               |      |
-|     |     |     |            |          |          | [[file:LeetCode/268-Missing-Number.cpp][src]] [[https://leetcode.com/problems/missing-number/description/][268. Missing Number]]                           |      |
-|     |     |     |            |          |          | [[file:LeetCode/326-Power-of-Three.cpp][src]] [[https://leetcode.com/problems/power-of-three/description/][326. Power of Three]]                           |      |
-|     |     |     |            |          |          | [[file:LeetCode/735-Asteroid-Collision.cpp][src]] [[https://leetcode.com/problems/asteroid-collision/description/][735. Asteroid Collision]]                       |      |
-
-[[http://orgmode.org/manual/Tables.html][More about Tables of org-mode]]
+* AtCoder
